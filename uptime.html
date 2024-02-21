@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uptime Data</title>
+</head>
+<body>
+    <h2>Uptime Data</h2>
+    <table border="1">
+        <tr>
+            <th>Timeout Count</th>
+            <th>Timeout Seconds</th>
+            <th>Timeout Duration</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>Up Time</th>
+        </tr>
+        {{range .}}
+        <tr>
+            <td>{{.TimeoutCount}}</td>
+            <td>{{.TimeoutSeconds}}</td>
+            <td>{{.TimeoutDuration}}</td>
+            <td>{{.StartTime}}</td>
+            <td>{{.EndTime}}</td>
+            <td>{{.UpTime}}</td>
+        </tr>
+        {{end}}
+    </table>
+</body>
+</html>
