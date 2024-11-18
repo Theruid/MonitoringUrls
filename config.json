@@ -1,6 +1,6 @@
 {
   "database": {
-    "connectionString": "sqlserver://test:test@localhost/test?database=TenantsDB",
+    "connectionString": "sqlserver://sa:YourPassword@localhost?database=TenantsDB",
     "timeoutInterval": "15s"
   }
 }

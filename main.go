@@ -17,6 +17,21 @@ import (
 	"github.com/gorilla/mux"
 )
 
+// Constants for configuration
+const (
+	defaultPort = 80
+	apiEndpoint = "api/FrontEnd/Shell/StaticData"
+	configFile  = "config.json"
+	tenantsFile = "list.json"
+)
+
+// Constants for HTTP status
+const (
+	statusOK    = 200
+	statusError = "Not OK"
+	statusGood  = "OK"
+)
+
 type TimeoutRecord struct {
 	ID         int       `json:"id"`
 	TenantName string    `json:"tenantName"`
@@ -163,7 +178,7 @@ var db *sql.DB
 func main() {
 	initDB()
 	// Load data from list.json
-	tenants, err := loadTenants("list.json")
+	tenants, err := loadTenants(tenantsFile)
 	if err != nil {
 		log.Fatalf("Error loading tenants: %v", err)
 	}
@@ -180,7 +195,7 @@ func main() {
 	mu.Lock()
 	for _, tenant := range tenants {
 		for _, externalURL := range tenant.Network.ExternalUrls {
-			url := externalURL + "api/FrontEnd/Shell/StaticData"
+			url := externalURL + apiEndpoint
 			site := &Site{URL: url}
 			sites[url] = site
 		}
@@ -188,12 +203,11 @@ func main() {
 	mu.Unlock()
 
 	// Start the HTTP server
-	port := 80
-	fmt.Printf("Server is running on http://localhost:%d\n", port)
-	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", port), r))
+	fmt.Printf("Server is running on http://localhost:%d\n", defaultPort)
+	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", defaultPort), r))
 }
 func initDB() {
-	configFile, err := ioutil.ReadFile("config.json")
+	configFile, err := ioutil.ReadFile(configFile)
 	if err != nil {
 		log.Fatalf("Error reading config file: %v", err)
 	}
@@ -275,7 +289,7 @@ func tenantHandler(w http.ResponseWriter, r *http.Request) {
         }
         table {
             border-collapse: collapse;
-            width: 100%%; 
+            width: 100%; 
         }
         th, td {
             border: 1px solid #ddd;
@@ -334,7 +348,7 @@ func homeHandler(w http.ResponseWriter, r *http.Request) {
         }
         table {
             border-collapse: collapse;
-            width: 100%%; 
+            width: 100%; 
         }
         th, td {
             border: 1px solid #ddd;

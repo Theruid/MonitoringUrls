@@ -1,0 +1,26 @@
+{
+  "items": [
+    {
+      "metadata": {
+        "name": "google",
+        "creationTimestamp": "2024-01-17T00:00:00Z"
+      },
+      "network": {
+        "externalUrls": [
+          "https://www.google.com/"
+        ]
+      }
+    },
+    {
+      "metadata": {
+        "name": "github",
+        "creationTimestamp": "2024-01-17T00:00:00Z"
+      },
+      "network": {
+        "externalUrls": [
+          "https://github.com/"
+        ]
+      }
+    }
+  ]
+}
