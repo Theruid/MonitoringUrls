@@ -532,9 +532,9 @@ func updateTimeoutRecord(tenantURL string) error {
 func sendEmail(subject, body string) {
 	smtpServer := "smtp.gmail.com"
 	smtpPort := 587
-	username := "sepidarmonitoring@gmail.com"
-	password := "sfip rlon olwo tvin"
-	senderAddress := "sepidarmonitoring@gmail.com"
+	username := "TESTg@gmail.com"
+	password := "APP-PASSWORD"
+	senderAddress := "TEST@gmail.com"
 
 	// Hardcoded recipient addresses
 	recipientAddresses := []string{"YourEmailAddresses"}
